@@ -1,7 +1,7 @@
 import ItemList from "./components/ItemList";
 import Sidebar from "./components/Sidebar";
 import styled from 'styled-components'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from 'axios'
 
 
@@ -42,22 +42,41 @@ const CardContainer = styled.div`
 function App() {
   
   const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState(["elo", "elo2"]);
-  const [items, setItems] = useState(["elo", "elo2"]);
-
-  useEffect(async () => {
-    const categoriesresult = await axios(
-      'https://fakestoreapi.com/products/categories',
-    );
-    setCategories(categoriesresult.data);
-
-    const itemsresult = await axios(
-      `https://fakestoreapi.com/products/category/${categories[0]}`,
-    );
-    setItems(itemsresult.data);
-  });
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(categories);
+  const [items, setItems] = useState([]);
 
 
+  const fetchCategories = async () => {
+    const { data } = await axios('https://fakestoreapi.com/products/categories');
+    return data;
+  };
+ 
+  const fetchProducts = async (category) => {
+    const response = await axios(`https://fakestoreapi.com/products/category/${category}`);
+    setItems(response.data);
+  };
+ 
+  useEffect(() => {
+    async function fetchData() {
+      const _categories = await fetchCategories();
+      setCategories(_categories);
+      await fetchProducts(_categories[0]);
+    }
+ 
+    fetchData();
+  }, []);
+
+
+  const inited = useRef(null);
+
+  useEffect(() => {
+    if(inited.current) {
+      fetchProducts(selectedCategory);
+    } else {
+      inited.current = selectedCategory;
+    }
+  },[selectedCategory]);
 
   return (
     <div className="App">
@@ -68,7 +87,7 @@ function App() {
       </Header>
       <CardContainer>
         <Container>
-        <Sidebar categories={categories}></Sidebar>
+        <Sidebar categories={categories} setSelectedCategory={setSelectedCategory}></Sidebar>
         <ItemList items={items}></ItemList>
         </Container>
       </CardContainer>

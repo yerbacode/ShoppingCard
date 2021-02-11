@@ -6,17 +6,22 @@ const StyledSidebar = styled.div`
     width: 25%;
     ul {
         list-style-type: none;
+        li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
     }
 `;
 
 
 
 
-export default function Sidebar(props) {
-    
-    const categoriesList = props.categories.map((category) => {
+export default function Sidebar( {setSelectedCategory, categories} ) {
+
+    const categoriesList = categories.map((category) => {
         return (
-            <li>{ category }</li>
+            <li onClick={() => setSelectedCategory(category) }>{category}</li>
         )
     })
 
