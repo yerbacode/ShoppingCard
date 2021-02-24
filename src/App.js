@@ -3,6 +3,7 @@ import Sidebar from "./components/Sidebar";
 import styled from 'styled-components'
 import { useEffect, useRef, useState } from "react";
 import axios from 'axios'
+import ShoppingCart from "./components/ShoppingCart";
 
 
 const Container = styled.div`
@@ -28,13 +29,17 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   color: white;
+  ${Container} {
+    justify-content: space-between;
+    display: flex;
+  }
 `;
 const CardContainer = styled.div`
     width: 100%;
     display: flex;
-    div {
-      display: flex;
-    }
+    ${Container} {
+    display: flex;
+  }
 `;
 
 
@@ -45,6 +50,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(categories);
   const [items, setItems] = useState([]);
+  const [ShoppingCartQuantity, setShoppingCartQuantity] = useState(0);
 
 
   const fetchCategories = async () => {
@@ -55,6 +61,7 @@ function App() {
   const fetchProducts = async (category) => {
     const response = await axios(`https://fakestoreapi.com/products/category/${category}`);
     setItems(response.data);
+    console.log(response.data);
   };
  
   useEffect(() => {
@@ -78,17 +85,22 @@ function App() {
     }
   },[selectedCategory]);
 
+  useEffect(() => {
+    console.log(ShoppingCartQuantity);
+  });
+
   return (
     <div className="App">
       <Header>
             <Container>
-              Shopping Card
+              <span>ShoppingCart</span>
+              <ShoppingCart ShoppingCartQuantity={ShoppingCartQuantity}/>
             </Container>
       </Header>
       <CardContainer>
         <Container>
         <Sidebar categories={categories} setSelectedCategory={setSelectedCategory}></Sidebar>
-        <ItemList items={items}></ItemList>
+        <ItemList items={items} ShoppingCartQuantity={ShoppingCartQuantity} setShoppingCartQuantity={setShoppingCartQuantity}></ItemList>
         </Container>
       </CardContainer>
     </div>
