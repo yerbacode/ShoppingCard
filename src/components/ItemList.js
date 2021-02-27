@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import LinesEllipsis from 'react-lines-ellipsis'
+import { ProductDataContext } from '../context/ProductsContext';
+import { ChartDataContext } from '../context/ChartContext';
 
 const StyledItemList = styled.div`
     width: 75%;
@@ -49,9 +51,11 @@ const ItemContainer = styled.div `
 
 
 
-export default function ItemList( { items, ShoppingCartQuantity, setShoppingCartQuantity } ) {
+export default function ItemList() {
 
-
+    const { items } = useContext(ProductDataContext);
+    const { ShoppingCartQuantity, setShoppingCartQuantity } = useContext(ChartDataContext);
+    
         let itemMap = items.map((item) => 
         <SingleItemContainer>
             <img src={item.image} alt={item.title}/>

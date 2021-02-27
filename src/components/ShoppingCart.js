@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import styled, {css} from 'styled-components'
+import { ChartDataContext } from '../context/ChartContext';
 
 
 const ShoppingCartContainer = styled.div`
@@ -27,8 +28,9 @@ const CartQuantity = styled.div`
     }    
 `;
 
-export default function ShoppingCart({ShoppingCartQuantity}) {
+export default function ShoppingCart() {
 
+    const { ShoppingCartQuantity, setShoppingCartQuantity } = useContext(ChartDataContext);
     function QuantityRound() {
         if (ShoppingCartQuantity < 100) {
             return <span>{ShoppingCartQuantity}</span>

@@ -1,15 +1,13 @@
 import axios from 'axios';
 import React, {createContext, useEffect, useRef, useState} from 'react'
 
-export const ProductDataContext = createContext();
+const ProductDataContext = createContext();
 
 const ProductDataProvider = (props) => {
 
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(categories);
     const [items, setItems] = useState([]);
-    const [ShoppingCartQuantity, setShoppingCartQuantity] = useState(0);
-  
     const fetchCategories = async () => {
       const { data } = await axios('https://fakestoreapi.com/products/categories');
       return data;
@@ -42,15 +40,12 @@ const ProductDataProvider = (props) => {
       }
     },[selectedCategory]);
   
-    useEffect(() => {
-      console.log(ShoppingCartQuantity);
-    });
-
-
 
     return (
-        <ProductDataContext.Provider value={{categories, selectedCategory, items, ShoppingCartQuantity, setShoppingCartQuantity, setItems, setSelectedCategory}}>
+        <ProductDataContext.Provider value={{categories,items, setItems, selectedCategory, setSelectedCategory}}>
             {props.children}
         </ProductDataContext.Provider>
     )
 }
+
+export { ProductDataContext,  ProductDataProvider }

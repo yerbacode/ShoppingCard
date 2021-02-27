@@ -1,19 +1,8 @@
 import ItemList from "./components/ItemList";
 import Sidebar from "./components/Sidebar";
 import styled from 'styled-components'
-import { useEffect, useRef, useState } from "react";
-import axios from 'axios'
 import ShoppingCart from "./components/ShoppingCart";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-  useParams
-} from "react-router-dom";
-import ProductDataProvider from './context/ProductsContext';
-
+import {ChartDataProvider} from './context/ChartContext';
 const Container = styled.div`
       padding-right: 15px;
       padding-left: 15px;
@@ -53,26 +42,23 @@ const CardContainer = styled.div`
 
 
 function App() {
-  
-
-
   return (
-    <ProductDataProvider>
       <div className="App">
         <Header>
               <Container>
                 <span>ShoppingCart</span>
-                <ShoppingCart/>
+                <ChartDataProvider><ShoppingCart/></ChartDataProvider>
               </Container>
         </Header>
         <CardContainer>
           <Container>
           <Sidebar/>
-          <ItemList/>
+          <ChartDataProvider>
+            <ItemList/>
+          </ChartDataProvider>
           </Container>
         </CardContainer>
       </div>
-      </ProductDataProvider>
   );
 }
 

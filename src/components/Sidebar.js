@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { ProductDataContext } from '../context/ProductsContext';
 
 const StyledSidebar = styled.div`
     background: coral;
@@ -25,7 +26,7 @@ const StyledSidebar = styled.div`
 
 export default function Sidebar() {
 
-    const { setSelectedCategory, categories } = useContext(ProductDataProvider);
+    const { setSelectedCategory, categories } = useContext(ProductDataContext);
 
     const categoriesList = categories.map((category) => {
         return (
