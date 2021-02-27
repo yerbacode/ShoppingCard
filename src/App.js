@@ -44,20 +44,20 @@ const CardContainer = styled.div`
 function App() {
   return (
       <div className="App">
+        <ChartDataProvider>
         <Header>
               <Container>
                 <span>ShoppingCart</span>
-                <ChartDataProvider><ShoppingCart/></ChartDataProvider>
+                <ShoppingCart/>
               </Container>
         </Header>
         <CardContainer>
           <Container>
           <Sidebar/>
-          <ChartDataProvider>
             <ItemList/>
-          </ChartDataProvider>
           </Container>
         </CardContainer>
+        </ChartDataProvider>
       </div>
   );
 }
