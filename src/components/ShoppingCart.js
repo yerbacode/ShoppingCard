@@ -28,10 +28,6 @@ const CartQuantity = styled.div`
 `;
 
 export default function ShoppingCart({ShoppingCartQuantity}) {
-    
-    useEffect(() => {
-        console.log(ShoppingCartQuantity.length);
-    });
 
     function QuantityRound() {
         if (ShoppingCartQuantity < 100) {

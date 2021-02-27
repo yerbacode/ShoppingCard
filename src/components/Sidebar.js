@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 const StyledSidebar = styled.div`
@@ -23,7 +23,9 @@ const StyledSidebar = styled.div`
 
 
 
-export default function Sidebar( {setSelectedCategory, categories} ) {
+export default function Sidebar() {
+
+    const { setSelectedCategory, categories } = useContext(ProductDataProvider);
 
     const categoriesList = categories.map((category) => {
         return (
