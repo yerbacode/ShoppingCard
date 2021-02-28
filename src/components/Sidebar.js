@@ -1,7 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ProductDataContext } from '../context/ProductsContext';
-
+import {
+    BrowserRouter,
+    Switch,
+    Route,
+    Link,
+    useParams
+  } from "react-router-dom";
 const StyledSidebar = styled.div`
     background: coral;
     width: 25%;
@@ -30,7 +36,9 @@ export default function Sidebar() {
 
     const categoriesList = categories.map((category) => {
         return (
-            <li onClick={() => setSelectedCategory(category) }>{category}</li>
+            <Link to={`/${category}`}>
+             <li>{category}</li>
+            </Link>
         )
     })
 
