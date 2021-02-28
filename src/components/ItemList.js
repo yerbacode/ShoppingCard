@@ -61,9 +61,7 @@ export default function ItemList() {
 
   useEffect(() => {
     setSelectedCategory(params.category);
-    console.log(params.category);
     setPathObjFromComp(params.category);
-    console.log('pathobj is:' + pathObj);
   }, [params.category]);
 
   let itemMap = items.map((item) => (
