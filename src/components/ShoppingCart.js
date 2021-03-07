@@ -1,13 +1,16 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import styled, {css} from 'styled-components'
 import { ChartDataContext } from '../context/ChartContext';
+import { ProductDataContext } from '../context/ProductsContext';
+import CartPopup from './CartPopup';
 
 
 const ShoppingCartContainer = styled.div`
     position: relative;
     margin-right: 7px;
+    cursor: pointer;
 `;
 
 const CartQuantity = styled.div`
@@ -28,20 +31,32 @@ const CartQuantity = styled.div`
     }    
 `;
 
+
+
 export default function ShoppingCart() {
 
-    const { ShoppingCartQuantity, setShoppingCartQuantity } = useContext(ChartDataContext);
-    function QuantityRound() {
+    const { ShoppingCartQuantity, setCartIconHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
+
+    const QuantityRound = () => {
         if (ShoppingCartQuantity < 100) {
             return <span>{ShoppingCartQuantity}</span>
         }
         return <span>99+</span>;
     }
 
+    const CartPopupShow = () => {
+        if (CartIconHover || CartPopupWindowHover) {
+            return (
+                <CartPopup/>
+            )
+        }
+    }
+
     return (
-        <ShoppingCartContainer>
+        <ShoppingCartContainer onMouseEnter={() => setCartIconHover(true)}  onMouseLeave={() => setCartIconHover(false)}>
             <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
             <CartQuantity ShoppingCartQuantity={ShoppingCartQuantity}>{QuantityRound()}</CartQuantity>
+            {CartPopupShow()}
         </ShoppingCartContainer>
     )
 }

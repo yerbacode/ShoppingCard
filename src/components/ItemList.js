@@ -54,7 +54,7 @@ export default function ItemList() {
   const { items, selectedCategory, setSelectedCategory, setPathObjFromComp, pathObj } = useContext(
     ProductDataContext
   );
-  const { ShoppingCartQuantity, setShoppingCartQuantity } = useContext(
+  const { ShoppingCartQuantity, setShoppingCartQuantity, ShoppingCartContent, setShoppingCartContent } = useContext(
     ChartDataContext
   );
   const params = useParams();
@@ -63,6 +63,11 @@ export default function ItemList() {
     setSelectedCategory(params.category);
     setPathObjFromComp(params.category);
   }, [params.category]);
+
+  const AddToCart = (item) => {
+    setShoppingCartQuantity(ShoppingCartQuantity + 1);
+    setShoppingCartContent([ item, ...ShoppingCartContent ])
+  }
 
   let itemMap = items.map((item) => (
     <SingleItemContainer>
@@ -77,7 +82,7 @@ export default function ItemList() {
         />
       </div>
       <div>{item.price} zł</div>
-      <button onClick={() => setShoppingCartQuantity(ShoppingCartQuantity + 1)}>
+      <button onClick={() => AddToCart(item)}>
         Add to cart
       </button>
     </SingleItemContainer>
