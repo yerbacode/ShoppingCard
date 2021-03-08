@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import { ChartDataContext } from '../context/ChartContext';
 
 
@@ -67,7 +67,7 @@ const ChartItemContainer = styled.div `
 `;
 export default function CartPopup() {
 
-    const { ShoppingCartContent, setCartPopupWindowHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
+    const { ShoppingCartContent, setCartPopupWindowHover } = useContext(ChartDataContext);
 
 
     const CartContentCheck = () => {
@@ -88,7 +88,7 @@ export default function CartPopup() {
             }
         }
 
-        let CartContentMap = arr2.map((item) => (
+        let CartContentMap = arr2.map((item, id) => (
             <ChartItemContainer>
                     <div className="cart__item_image"><img src={item.image} alt="Product"/></div>
                     <div className="cart__item_title">{item.title}</div>
@@ -108,7 +108,7 @@ export default function CartPopup() {
     }
 
     return (
-        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(true)}>
+        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(false)}>
                 <div className="CartPopupWindow__Header">
                     <div>
                         Twój koszyk

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import { ChartDataContext } from '../context/ChartContext';
-import { ProductDataContext } from '../context/ProductsContext';
 import CartPopup from './CartPopup';
 
 

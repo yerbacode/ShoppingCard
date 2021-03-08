@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { ProductDataContext } from '../context/ProductsContext';
 import {
@@ -32,11 +32,11 @@ const StyledSidebar = styled.div`
 
 export default function Sidebar() {
 
-    const { setSelectedCategory, categories } = useContext(ProductDataContext);
+    const { categories } = useContext(ProductDataContext);
 
-    const categoriesList = categories.map((category) => {
+    const categoriesList = categories.map((category, index) => {
         return (
-            <Link to={`/${category}`}>
+            <Link to={`/${category}`} key={index}>
              <li>{category}</li>
             </Link>
         )

@@ -51,7 +51,7 @@ const ItemContainer = styled.div`
 `;
 
 export default function ItemList() {
-  const { items, selectedCategory, setSelectedCategory, setPathObjFromComp, pathObj } = useContext(
+  const { items, setSelectedCategory, setPathObjFromComp, pathObj } = useContext(
     ProductDataContext
   );
   const { ShoppingCartQuantity, setShoppingCartQuantity, ShoppingCartContent, setShoppingCartContent } = useContext(
@@ -71,7 +71,7 @@ export default function ItemList() {
   }
 
   let itemMap = items.map((item) => (
-    <SingleItemContainer>
+    <SingleItemContainer key={item.id}>
       <img src={item.image} alt={item.title} />
       <div>
         <LinesEllipsis
