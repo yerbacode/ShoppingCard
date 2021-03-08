@@ -64,6 +64,7 @@ export default function ItemList() {
     setPathObjFromComp(params.category);
   }, [params.category]);
 
+
   const AddToCart = (item) => {
     setShoppingCartQuantity(ShoppingCartQuantity + 1);
     setShoppingCartContent([ item, ...ShoppingCartContent ])
