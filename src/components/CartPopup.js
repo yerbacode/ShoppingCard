@@ -14,19 +14,19 @@ const CartPopupWindow = styled.div `
     padding: 10px;
     color: black;
     margin-top: -20px;
+    padding-left: 20px;
     .CartPopupWindow__Header {
         display: grid;
         grid-template-columns: 20% 50% 15% 15%;
         height: 40px;
+        padding-right: 20px;
         div:nth-of-type(1) {
             font-size: 17px;
             font-weight: 700;
+            width: max-content;
         }
-        div:nth-of-type(2) {
-            text-align: right;
-            margin-right: 30px;
-        }
-        div:nth-of-type(3) {
+
+        div:nth-of-type(4) {
             span {
                 display: block;
             }
@@ -43,6 +43,8 @@ const ChartItemContainer = styled.div `
     grid-template-columns: 20% 50% 15% 15%;
     height: 100px;
     margin-top: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
     .cart__item_image {
         img {
             width: 50px;
@@ -55,8 +57,12 @@ const ChartItemContainer = styled.div `
         font-size: 13px;
         text-align: left;
     }
+    .cart__item_amount {
+        text-align: center;
+    }
     .cart__item_price {
         font-size: 18px;
+        width: max-content;
     }
 `;
 export default function CartPopup() {
@@ -74,12 +80,20 @@ export default function CartPopup() {
             a.push({ title : b.title, price : b.price, image : b.image, times : 1 }) : a[i].times++, a;
         }, []);
 
+        const priceRound = (price, times) => {
+            if (price * times < 9999) {
+                return price * times
+            } else {
+                return "9999+"
+            }
+        }
+
         let CartContentMap = arr2.map((item) => (
             <ChartItemContainer>
                     <div className="cart__item_image"><img src={item.image} alt="Product"/></div>
                     <div className="cart__item_title">{item.title}</div>
                     <div className="cart__item_amount">{item.times}</div>
-                    <div className="cart__item_price">{item.times * item.price} zł</div>
+                    <div className="cart__item_price">{priceRound(item.price, item.times)} zł</div>
             </ChartItemContainer>
         ));
 
@@ -94,7 +108,7 @@ export default function CartPopup() {
     }
 
     return (
-        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(false)}>
+        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(true)}>
                 <div className="CartPopupWindow__Header">
                     <div>
                         Twój koszyk
