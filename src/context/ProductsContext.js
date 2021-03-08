@@ -7,8 +7,12 @@ const ProductDataProvider = (props) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(categories);
   const [items, setItems] = useState([]);
+  const [ProductLoading, setProductLoading] = useState(true);
+  const [CategoriesLoading, setCategoriesLoading] = useState(true);
 
   const fetchCategories = async () => {
+    setProductLoading(true);
+    setCategoriesLoading(true);
     const { data } = await axios(
       "https://fakestoreapi.com/products/categories"
     );
@@ -21,16 +25,19 @@ const ProductDataProvider = (props) => {
   };
 
   const fetchProducts = async (category) => {
+    setProductLoading(true);
     const response = await axios(
       `https://fakestoreapi.com/products/category/${category}`
     );
     setItems(response.data);
+    setProductLoading(false);
   };
 
   useEffect(() => {
     async function fetchData() {
       const _categories = await fetchCategories();
       setCategories(_categories);
+      setCategoriesLoading(false);
     }
     fetchData();
   }, []);
@@ -47,6 +54,8 @@ const ProductDataProvider = (props) => {
         items,
         setItems,
         selectedCategory,
+        ProductLoading,
+        CategoriesLoading,
         setSelectedCategory,
         setPathObjFromComp,
         pathObj

@@ -51,7 +51,7 @@ const ItemContainer = styled.div`
 `;
 
 export default function ItemList() {
-  const { items, setSelectedCategory, setPathObjFromComp, pathObj } = useContext(
+  const { items, setSelectedCategory, setPathObjFromComp, ProductLoading } = useContext(
     ProductDataContext
   );
   const { ShoppingCartQuantity, setShoppingCartQuantity, ShoppingCartContent, setShoppingCartContent } = useContext(
@@ -89,9 +89,21 @@ export default function ItemList() {
     </SingleItemContainer>
   ));
 
+  const ProductsAreLoaded = () => {
+    if (ProductLoading === true ) {
+      return (
+        <StyledItemList>Loading items</StyledItemList>
+      ) 
+    } else {
+      return (
+      <StyledItemList>
+        <ItemContainer>{itemMap}</ItemContainer>
+      </StyledItemList>
+      )
+    }
+  }
+
   return (
-    <StyledItemList>
-      <ItemContainer>{itemMap}</ItemContainer>
-    </StyledItemList>
+    ProductsAreLoaded()
   );
 }

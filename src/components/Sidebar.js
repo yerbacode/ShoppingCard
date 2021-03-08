@@ -8,6 +8,8 @@ import {
     Link,
     useParams
   } from "react-router-dom";
+
+
 const StyledSidebar = styled.div`
     background: coral;
     width: 25%;
@@ -26,9 +28,6 @@ const StyledSidebar = styled.div`
         }
     }
 `;
-
-
-
 
 export default function Sidebar() {
 

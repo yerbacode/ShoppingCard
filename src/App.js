@@ -12,7 +12,7 @@ import {
   useParams,
   Redirect
 } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 const Container = styled.div`
   padding-right: 15px;
@@ -50,8 +50,28 @@ const CardContainer = styled.div`
   }
 `;
 
+
+
 function App() {
-  const { categories } = useContext(ProductDataContext);
+  const { CategoriesLoading, ProductLoading } = useContext(ProductDataContext);
+
+  const CategoriesAreLoading = () => {
+    if (CategoriesLoading === true && ProductLoading === true ) {
+      return (
+        <div>Loading!!!</div>
+      ) 
+    } else {
+      return (
+        <Container>
+        <Sidebar />
+        <Switch>
+          <Redirect exact from="/" to="/electronics" />
+          <Route path="/:category" component={ItemList} />
+        </Switch>
+      </Container>
+      )
+    }
+  }
 
   return (
     <BrowserRouter>
@@ -64,13 +84,7 @@ function App() {
             </Container>
           </Header>
           <CardContainer>
-            <Container>
-              <Sidebar />
-              <Switch>
-                <Redirect exact from="/" to="/electronics" />
-                <Route path="/:category" component={ItemList} />
-              </Switch>
-            </Container>
+            {CategoriesAreLoading()}
           </CardContainer>
         </ChartDataProvider>
       </div>
