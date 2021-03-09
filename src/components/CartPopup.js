@@ -67,7 +67,7 @@ const ChartItemContainer = styled.div `
 `;
 export default function CartPopup() {
 
-    const { ShoppingCartContent, setCartPopupWindowHover } = useContext(ChartDataContext);
+    const { ShoppingCartContent, setShoppingCartContent, setCartPopupWindowHover } = useContext(ChartDataContext);
 
 
     const CartContentCheck = () => {
@@ -88,12 +88,21 @@ export default function CartPopup() {
             }
         }
 
+        const removeItem = (item) => {
+            setShoppingCartContent(
+              ShoppingCartContent.filter(
+                (e) => e.title !== item
+              )
+            );
+          };
+
         let CartContentMap = arr2.map((item, id) => (
             <ChartItemContainer>
                     <div className="cart__item_image"><img src={item.image} alt="Product"/></div>
                     <div className="cart__item_title">{item.title}</div>
                     <div className="cart__item_amount">{item.times}</div>
                     <div className="cart__item_price">{priceRound(item.price, item.times)} zł</div>
+                    <div className="cart__item_remove" onClick={() => removeItem(item.title)}><button>x</button></div>
             </ChartItemContainer>
         ));
 
