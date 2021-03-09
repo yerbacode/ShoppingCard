@@ -34,11 +34,11 @@ const CartQuantity = styled.div`
 
 export default function ShoppingCart() {
 
-    const { ShoppingCartQuantity, setCartIconHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
+    const { ShoppingCartContent, setCartIconHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
 
     const QuantityRound = () => {
-        if (ShoppingCartQuantity < 100) {
-            return <span>{ShoppingCartQuantity}</span>
+        if (ShoppingCartContent.length < 100) {
+            return <span>{ShoppingCartContent.length}</span>
         }
         return <span>99+</span>;
     }
@@ -54,7 +54,7 @@ export default function ShoppingCart() {
     return (
         <ShoppingCartContainer onMouseEnter={() => setCartIconHover(true)}  onMouseLeave={() => setCartIconHover(false)}>
             <FontAwesomeIcon icon={faShoppingCart} size="lg"/>
-            <CartQuantity ShoppingCartQuantity={ShoppingCartQuantity}>{QuantityRound()}</CartQuantity>
+            <CartQuantity>{QuantityRound()}</CartQuantity>
             {CartPopupShow()}
         </ShoppingCartContainer>
     )

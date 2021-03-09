@@ -66,7 +66,6 @@ export default function ItemList() {
 
 
   const AddToCart = (item) => {
-    setShoppingCartQuantity(ShoppingCartQuantity + 1);
     setShoppingCartContent([ item, ...ShoppingCartContent ])
   }
 
