@@ -97,7 +97,7 @@ export default function CartPopup() {
           };
 
         let CartContentMap = arr2.map((item, id) => (
-            <ChartItemContainer>
+            <ChartItemContainer key={id}>
                     <div className="cart__item_image"><img src={item.image} alt="Product"/></div>
                     <div className="cart__item_title">{item.title}</div>
                     <div className="cart__item_amount">{item.times}</div>
