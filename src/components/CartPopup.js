@@ -88,22 +88,15 @@ export default function CartPopup() {
             }
         }
 
-        // const removeItem = (item) => {
-        //     setShoppingCartContent(
-        //       ShoppingCartContent.filter(
-        //         (e) => e.title !== item
-        //       )
-        //     );
-        //   };
-
           const removeItem = (itemtitle) => {
-            var arr = ShoppingCartContent
-            var idx = ShoppingCartContent.findIndex(item => item.title === itemtitle);
-            if (idx >= 0) {
-                arr.splice(idx, 1);
-            }
+            var idx = ShoppingCartContent.findIndex(
+              (item) => item.title === itemtitle
+            );
+            const arr = ShoppingCartContent.filter((item, index, arr) => {
+              return index !== idx;
+            });
             setShoppingCartContent(arr);
-          };
+        };
 
         let CartContentMap = arr2.map((item, id) => (
             <ChartItemContainer key={id}>
