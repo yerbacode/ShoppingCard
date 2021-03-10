@@ -34,7 +34,7 @@ const CartQuantity = styled.div`
 
 export default function ShoppingCart() {
 
-    const { ShoppingCartContent, setCartIconHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
+    const { ShoppingCartContent, setShoppingCartContent, setCartIconHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
 
     const QuantityRound = () => {
         if (ShoppingCartContent.length < 100) {

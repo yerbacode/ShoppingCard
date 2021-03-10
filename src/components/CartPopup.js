@@ -88,12 +88,21 @@ export default function CartPopup() {
             }
         }
 
-        const removeItem = (item) => {
-            setShoppingCartContent(
-              ShoppingCartContent.filter(
-                (e) => e.title !== item
-              )
-            );
+        // const removeItem = (item) => {
+        //     setShoppingCartContent(
+        //       ShoppingCartContent.filter(
+        //         (e) => e.title !== item
+        //       )
+        //     );
+        //   };
+
+          const removeItem = (itemtitle) => {
+            var arr = ShoppingCartContent
+            var idx = ShoppingCartContent.findIndex(item => item.title === itemtitle);
+            if (idx >= 0) {
+                arr.splice(idx, 1);
+            }
+            setShoppingCartContent(arr);
           };
 
         let CartContentMap = arr2.map((item, id) => (
@@ -115,6 +124,11 @@ export default function CartPopup() {
             );
         }
     }
+    
+    useEffect(() => {
+        console.log(ShoppingCartContent);
+      }, [ShoppingCartContent])
+
 
     return (
         <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(false)}>
