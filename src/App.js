@@ -56,19 +56,17 @@ function App() {
   const { CategoriesLoading, ProductLoading } = useContext(ProductDataContext);
 
   const CategoriesAreLoading = () => {
-    if (CategoriesLoading === true && ProductLoading === true ) {
-      return (
-        <div>Loading!!!</div>
-      ) 
+    if (CategoriesLoading === true) {
+      return <div>Loading!!!</div>;
     } else {
       return (
         <Container>
-        <Sidebar />
-        <Switch>
-          <Redirect exact from="/" to="/electronics" />
-          <Route path="/:category" component={ItemList} />
-        </Switch>
-      </Container>
+          <Sidebar />
+          <Switch>
+            <Redirect exact from="/" to="/electronics" />
+            <Route path="/:category" component={ItemList} />
+          </Switch>
+        </Container>
       )
     }
   }
