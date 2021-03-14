@@ -37,6 +37,19 @@ const CartPopupWindow = styled.div `
         overflow-y: auto;
         max-height: 330px;
     }
+    .CartPopupWindow__PriceSummary {
+        width: 100%;
+         text-align: right;
+         span {
+             margin-right: 20px;
+             text-transform: uppercase;
+             color: grey;
+             span {
+                 color: black;
+             }
+         }
+        }
+    }
 `;
 
 const ChartItemContainer = styled.div `
@@ -139,14 +152,13 @@ export default function CartPopup() {
             );
         }
     }
-    
-    useEffect(() => {
-        console.log(ShoppingCartContent);
-      }, [ShoppingCartContent])
 
+    const TotalPrice = ShoppingCartContent?.reduce((sum, item) => {
+        return sum + item.price;
+    }, 0);
 
     return (
-        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(false)}>
+        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(true)}>
                 <div className="CartPopupWindow__Header">
                     <div>
                         Your cart
@@ -160,6 +172,9 @@ export default function CartPopup() {
                 </div>
                 <div className="CartPopupWindow__Content">
                     {CartContentCheck()}
+                </div>
+                <div className="CartPopupWindow__PriceSummary">
+                    <span>Razem: <span> {TotalPrice}</span></span>
                 </div>
             </CartPopupWindow>
     );

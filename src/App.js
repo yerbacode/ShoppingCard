@@ -74,12 +74,12 @@ function App() {
     } else {
       return (
         <Container>
-        <Sidebar />
-        <Switch>
-          <Redirect exact from="/" to="/electronics" />
-          <Route path="/:category" component={ItemList} />
-        </Switch>
-      </Container>
+          <Sidebar />
+          <Switch>
+            <Redirect exact from="/" to="/electronics" />
+            <Route path="/:category" component={ItemList} />
+          </Switch>
+        </Container>
       )
     }
   }
