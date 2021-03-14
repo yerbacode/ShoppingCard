@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ChartDataContext } from '../context/ChartContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import LinesEllipsis from "react-lines-ellipsis";
 
 
 const CartPopupWindow = styled.div `
@@ -17,11 +20,9 @@ const CartPopupWindow = styled.div `
     padding-left: 20px;
     .CartPopupWindow__Header {
         display: grid;
-        grid-template-columns: 20% 50% 15% 15%;
+        grid-template-columns: 20% 25% 20% 20% 15%;
         height: 40px;
-        padding-right: 20px;
         div:nth-of-type(1) {
-            font-size: 17px;
             font-weight: 700;
             width: max-content;
         }
@@ -40,17 +41,14 @@ const CartPopupWindow = styled.div `
 
 const ChartItemContainer = styled.div `
     display: grid;
-    grid-template-columns: 20% 50% 15% 15%;
+    grid-template-columns: 20% 25% 20% 20% 15%;
+    align-items: center;
     height: 100px;
-    margin-top: 10px;
-    padding-right: 20px;
-    padding-left: 20px;
     .cart__item_image {
         img {
-            width: 50px;
+        width: 40%;
         height: 50px;
         object-fit: contain;
-        margin-right: 10px;
         }
     }
     .cart__item_title {
@@ -60,9 +58,25 @@ const ChartItemContainer = styled.div `
     .cart__item_amount {
         text-align: center;
     }
-    .cart__item_price {
-        font-size: 18px;
-        width: max-content;
+    .cart__item_price 
+        span {
+            text-align: right;
+            width: 100%;
+            display: block;
+        }
+    }
+    .cart__item_remove {
+        width: 100%;
+        button {
+            background: none;
+            border: none;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            &:focus {
+                outline: none;
+            }
+        }
     }
 `;
 export default function CartPopup() {
@@ -101,10 +115,18 @@ export default function CartPopup() {
         let CartContentMap = arr2.map((item, id) => (
             <ChartItemContainer key={id}>
                     <div className="cart__item_image"><img src={item.image} alt="Product"/></div>
-                    <div className="cart__item_title">{item.title}</div>
+                    <div className="cart__item_title">
+                        <LinesEllipsis
+                            text={item.title}
+                            maxLine="3"
+                            ellipsis="..."
+                            trimRight
+                            basedOn="letters"
+                        />
+                    </div>
                     <div className="cart__item_amount">{item.times}</div>
-                    <div className="cart__item_price">{priceRound(item.price, item.times)} zł</div>
-                    <div className="cart__item_remove" onClick={() => removeItem(item.title)}><button>x</button></div>
+                    <div className="cart__item_remove" onClick={() => removeItem(item.title)}><button><FontAwesomeIcon icon={faTrashAlt} size="lg"/></button></div>
+                    <div className="cart__item_price"><span>{priceRound(item.price, item.times)} zł</span></div>
             </ChartItemContainer>
         ));
 
@@ -127,12 +149,13 @@ export default function CartPopup() {
         <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(false)}>
                 <div className="CartPopupWindow__Header">
                     <div>
-                        Twój koszyk
+                        Your cart
                     </div>
                     <div></div>
-                    <div>Ilość:</div>
+                    <div className="CartPopupWindow__Header_Amount">Amount:</div>
+                    <div>Remove:</div>
                     <div>
-                        Wartość <span>koszyka:</span> 
+                        Cart <span>value:</span> 
                     </div>
                 </div>
                 <div className="CartPopupWindow__Content">

@@ -11,11 +11,11 @@ const ProductDataProvider = (props) => {
   const [CategoriesLoading, setCategoriesLoading] = useState(true);
 
   const fetchCategories = async () => {
-    setProductLoading(true);
     setCategoriesLoading(true);
     const { data } = await axios(
       "https://fakestoreapi.com/products/categories"
     );
+    setCategoriesLoading(false);
     return data;
   };
   const [pathObj, setpathObj] = useState("");
@@ -37,7 +37,6 @@ const ProductDataProvider = (props) => {
     async function fetchData() {
       const _categories = await fetchCategories();
       setCategories(_categories);
-      setCategoriesLoading(false);
     }
     fetchData();
   }, []);

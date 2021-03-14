@@ -13,6 +13,9 @@ import {
   Redirect
 } from "react-router-dom";
 import { useContext, useEffect } from "react";
+import useWindowSize from "./components/WindowSize";
+import HamburgerMenu from "./components/HamburgerMenu";
+import Loader from "./components/Loader";
 
 const Container = styled.div`
   padding-right: 15px;
@@ -31,15 +34,25 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  background: black;
+  background: #f6f6f6;
   width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
-  color: white;
+  color: #1f1f1f;
   ${Container} {
     justify-content: space-between;
     display: flex;
+    align-items: center;
+    @media (max-width: 810px) {
+      width: 100%;
+    }
+    span {
+      a {
+      text-decoration: none;
+      color: #1f1f1f;
+    }
+    }
   }
 `;
 const CardContainer = styled.div`
@@ -50,15 +63,13 @@ const CardContainer = styled.div`
   }
 `;
 
-
-
 function App() {
-  const { CategoriesLoading, ProductLoading } = useContext(ProductDataContext);
+  const { CategoriesLoading } = useContext(ProductDataContext);
 
   const CategoriesAreLoading = () => {
-    if (CategoriesLoading === true && ProductLoading === true ) {
+    if (CategoriesLoading === true ) {
       return (
-        <div>Loading!!!</div>
+        <Loader/>
       ) 
     } else {
       return (
@@ -79,7 +90,8 @@ function App() {
         <ChartDataProvider>
           <Header>
             <Container>
-              <span>ShoppingCart</span>
+              <HamburgerMenu/>
+              <span><Link to="/">ShopLogo</Link></span>
               <ShoppingCart />
             </Container>
           </Header>

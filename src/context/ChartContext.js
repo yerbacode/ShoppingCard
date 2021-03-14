@@ -8,9 +8,10 @@ const ChartDataProvider = (props) => {
     const [ShoppingCartContent, setShoppingCartContent] = useState([]);
     const [ CartIconHover, setCartIconHover ] = useState(false);
     const [ CartPopupWindowHover, setCartPopupWindowHover ] = useState(false);
+    const [ HamburgerClicked, setHamburgerClicked ] = useState(false);
 
     return (
-        <ChartDataContext.Provider value={{ ShoppingCartContent, setShoppingCartContent, CartIconHover, setCartIconHover, CartPopupWindowHover, setCartPopupWindowHover}}>
+        <ChartDataContext.Provider value={{ HamburgerClicked, setHamburgerClicked, ShoppingCartContent, setShoppingCartContent, CartIconHover, setCartIconHover, CartPopupWindowHover, setCartPopupWindowHover}}>
             {props.children}
         </ChartDataContext.Provider>
     )

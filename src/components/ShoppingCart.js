@@ -10,10 +10,11 @@ const ShoppingCartContainer = styled.div`
     position: relative;
     margin-right: 7px;
     cursor: pointer;
+    height: 22px;
 `;
 
 const CartQuantity = styled.div`
-    background: red;
+    background: #d1d1d1;
     border-radius: 50px;
     height: 17px;
     position: absolute;
