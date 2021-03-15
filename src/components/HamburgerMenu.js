@@ -103,9 +103,7 @@ ${ ({HamburgerClicked}) =>
 const HamburgerMenu= () => {
 
     const { HamburgerClicked, setHamburgerClicked } = useContext(ChartDataContext);
-    useEffect(() => {
-      console.log(HamburgerClicked);
-    });
+
     return ( 
         <Burger HamburgerClicked = {HamburgerClicked} onClick={() => {setHamburgerClicked(!HamburgerClicked)}}>
           <span className = "line"></span> 

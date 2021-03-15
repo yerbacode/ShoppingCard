@@ -1,6 +1,6 @@
 import ItemList from "./components/ItemList";
 import Sidebar from "./components/Sidebar";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import ShoppingCart from "./components/ShoppingCart";
 import { ChartDataProvider } from "./context/ChartContext";
 import { ProductDataContext } from "./context/ProductsContext";
@@ -17,6 +17,9 @@ import useWindowSize from "./components/WindowSize";
 import HamburgerMenu from "./components/HamburgerMenu";
 import Loader from "./components/Loader";
 
+const GlobalStyle = createGlobalStyle`
+
+`;
 const Container = styled.div`
   padding-right: 15px;
   padding-left: 15px;
@@ -86,6 +89,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <GlobalStyle/>
       <div className="App">
         <ChartDataProvider>
           <Header>

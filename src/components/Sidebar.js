@@ -18,14 +18,18 @@ const StyledSidebar = styled.div`
         position: absolute;
         background: white;
         height: 100%;
-        width: 25%;
-        margin-left: -25%;
+        width: 30%;
+        left: -30%;
+        border-right: 1px solid #e0e0e0;
     }
+
     ${ ({HamburgerClicked}) =>
     HamburgerClicked &&
     css`
-        width: 25%;
-        margin-left: 0% !important;
+        width: 30%;
+        left: 0% !important;
+        padding-left: 5%;
+        padding-right: 15px;
     `}
 
     padding-top: 40px;

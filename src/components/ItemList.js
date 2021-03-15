@@ -13,8 +13,11 @@ const ItemContainer = styled.div`
   display: grid;
   grid-template-columns: 33.3% 33.3% 33.3%;
   grid-gap: 10px;
-  @media (max-width: 1030px) {
+  @media (max-width: 1670px) {
     grid-template-columns: 50% 50%;
+  }
+  @media (max-width: 500px) {
+    grid-template-columns: 100%;
   }
 `;
 
@@ -41,7 +44,7 @@ const SingleItemContainer = styled.div`
   .single__item {
     padding-top: 10px;
     padding-bottom: 10px;
-    background: #f6f6f6;
+    border: 1px solid #e0e0e0;
     padding: 20px 20px 20px 20px;
     img {
     width: 200px;
@@ -131,7 +134,9 @@ export default function ItemList() {
       ) 
     } else {
       return (
-      <StyledItemList><Loader/></StyledItemList>
+      <StyledItemList>
+        <ItemContainer>{itemMap}</ItemContainer>
+      </StyledItemList>
       )
     }
   }

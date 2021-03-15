@@ -8,7 +8,7 @@ import LinesEllipsis from "react-lines-ellipsis";
 
 const CartPopupWindow = styled.div `
     background: white;
-    border: 1px solid grey;
+    border: 1px solid #e0e0e0;
     width: 500px;
     height: 400px;
     position: absolute;
@@ -18,10 +18,16 @@ const CartPopupWindow = styled.div `
     color: black;
     margin-top: -20px;
     padding-left: 20px;
+    @media (max-width: 501px) {
+        width: 84vw;
+    }
     .CartPopupWindow__Header {
         display: grid;
-        grid-template-columns: 20% 25% 20% 20% 15%;
+        grid-template-columns: 20% 20% 20% 20% 15%;
         height: 40px;
+        @media (max-width: 501px) {
+            font-size: 13px;
+        }
         div:nth-of-type(1) {
             font-weight: 700;
             width: max-content;
@@ -32,18 +38,22 @@ const CartPopupWindow = styled.div `
                 display: block;
             }
         }
+        div:nth-of-type(5) {
+            width: max-content;
+        }
     }
     .CartPopupWindow__Content {
-        overflow-y: auto;
-        max-height: 330px;
+        overflow-y: scroll;
+        max-height: 320px;
+        padding-right: 10px;
     }
     .CartPopupWindow__PriceSummary {
         width: 100%;
          text-align: right;
+         margin-top: 20px;
          span {
-             margin-right: 20px;
-             text-transform: uppercase;
              color: grey;
+             margin-right: 13px;
              span {
                  color: black;
              }
@@ -54,9 +64,11 @@ const CartPopupWindow = styled.div `
 
 const ChartItemContainer = styled.div `
     display: grid;
-    grid-template-columns: 20% 25% 20% 20% 15%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     align-items: center;
     height: 100px;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
     .cart__item_image {
         img {
         width: 40%;
@@ -71,7 +83,10 @@ const ChartItemContainer = styled.div `
     .cart__item_amount {
         text-align: center;
     }
-    .cart__item_price 
+    .cart__item_price {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
         span {
             text-align: right;
             width: 100%;
@@ -109,9 +124,17 @@ export default function CartPopup() {
 
         const priceRound = (price, times) => {
             if (price * times < 9999) {
-                return price * times
+                return Math.round(price * times * 100)/100;
             } else {
                 return "9999+"
+            }
+        }
+
+        const amountRound = (itemtimes) => {
+            if (itemtimes < 999) {
+                return itemtimes;
+            } else {
+                return "999+";
             }
         }
 
@@ -137,7 +160,7 @@ export default function CartPopup() {
                             basedOn="letters"
                         />
                     </div>
-                    <div className="cart__item_amount">{item.times}</div>
+                    <div className="cart__item_amount">{amountRound(item.times)}</div>
                     <div className="cart__item_remove" onClick={() => removeItem(item.title)}><button><FontAwesomeIcon icon={faTrashAlt} size="lg"/></button></div>
                     <div className="cart__item_price"><span>{priceRound(item.price, item.times)} zł</span></div>
             </ChartItemContainer>
@@ -148,17 +171,17 @@ export default function CartPopup() {
         );
         } else {
             return (
-                <div>Koszyk jest pusty</div>
+                <div>Cart is empty.</div>
             );
         }
     }
 
     const TotalPrice = ShoppingCartContent?.reduce((sum, item) => {
-        return sum + item.price;
+        return Math.round((sum + item.price) * 100)/100;
     }, 0);
 
     return (
-        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)}  onMouseLeave={() => setCartPopupWindowHover(true)}>
+        <CartPopupWindow onMouseEnter={() => setCartPopupWindowHover(true)} onTouchStart={() => setCartPopupWindowHover(true)} onTouchEnd={() => setCartPopupWindowHover(false)} onMouseLeave={() => setCartPopupWindowHover(false)}>
                 <div className="CartPopupWindow__Header">
                     <div>
                         Your cart
@@ -174,7 +197,7 @@ export default function CartPopup() {
                     {CartContentCheck()}
                 </div>
                 <div className="CartPopupWindow__PriceSummary">
-                    <span>Razem: <span> {TotalPrice}</span></span>
+                    <span>Total cost: <span> {TotalPrice} zł</span></span>
                 </div>
             </CartPopupWindow>
     );
