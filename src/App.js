@@ -9,11 +9,9 @@ import {
   Switch,
   Route,
   Link,
-  useParams,
   Redirect
 } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import useWindowSize from "./components/WindowSize";
+import { useContext } from "react";
 import HamburgerMenu from "./components/HamburgerMenu";
 import Loader from "./components/Loader";
 

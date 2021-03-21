@@ -86,10 +86,10 @@ const FlexContainer = styled.div `
 `
 
 export default function ItemList() {
-  const { items, setSelectedCategory, setPathObjFromComp, ProductLoading } = useContext(
+  const { items, setSelectedCategory, setPathObjFromComp, productLoading } = useContext(
     ProductDataContext
   );
-  const { ShoppingCartContent, setShoppingCartContent } = useContext(
+  const { shoppingCartContent, setShoppingCartContent } = useContext(
     ChartDataContext
   );
   const params = useParams();
@@ -101,13 +101,14 @@ export default function ItemList() {
 
 
   const AddToCart = (item) => {
-    setShoppingCartContent([ item, ...ShoppingCartContent ])
+    setShoppingCartContent([ item, ...shoppingCartContent ])
   }
 
   let itemMap = items.map((item) => (
     <SingleItemContainer key={item.id}>
       <div className="single__item">
-        <img src={item.image} alt={item.title} />
+        {/* Replacing temporaty untill API will be fixed. */}
+        <img src={item.image.replace('https://fakestoreapi.com/', 'https://fakestoreapi.herokuapp.com/')} alt={item.title} />
         <div className="single__item_title">
           <LinesEllipsis
             text={item.title}
@@ -128,7 +129,7 @@ export default function ItemList() {
   ));
 
   const ProductsAreLoaded = () => {
-    if (ProductLoading === true ) {
+    if (productLoading === true ) {
       return (
         <StyledItemList><Loader/></StyledItemList>
       ) 

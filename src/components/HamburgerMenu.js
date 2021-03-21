@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import styled, {css} from "styled-components";
 import { ChartDataContext } from '../context/ChartContext';
 
@@ -57,8 +57,8 @@ transform: scale(0.7);
   -o-transform: translateY(-13px) rotate(90deg);
   transform: translateY(-13px) rotate(90deg);
 }
-${ ({HamburgerClicked}) =>
-    HamburgerClicked &&
+${ ({hamburgerClicked}) =>
+  hamburgerClicked &&
     css`
     
   -webkit-transition: all 0.3s ease-in-out;
@@ -102,10 +102,10 @@ ${ ({HamburgerClicked}) =>
 
 const HamburgerMenu= () => {
 
-    const { HamburgerClicked, setHamburgerClicked } = useContext(ChartDataContext);
+    const { hamburgerClicked, setHamburgerClicked } = useContext(ChartDataContext);
 
     return ( 
-        <Burger HamburgerClicked = {HamburgerClicked} onClick={() => {setHamburgerClicked(!HamburgerClicked)}}>
+        <Burger hamburgerClicked = {hamburgerClicked} onClick={() => {setHamburgerClicked(!hamburgerClicked)}}>
           <span className = "line"></span> 
           <span className = "line"></span> 
           <span className = "line"></span> 

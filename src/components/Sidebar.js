@@ -8,7 +8,6 @@ import {
     Link,
     useParams
   } from "react-router-dom";
-import useWindowSize from './WindowSize';
 import { ChartDataContext } from '../context/ChartContext';
 
 
@@ -23,8 +22,8 @@ const StyledSidebar = styled.div`
         border-right: 1px solid #e0e0e0;
     }
 
-    ${ ({HamburgerClicked}) =>
-    HamburgerClicked &&
+    ${ ({hamburgerClicked}) =>
+    hamburgerClicked &&
     css`
         width: 30%;
         left: 0% !important;
@@ -63,18 +62,19 @@ const StyledSidebar = styled.div`
             }
         }
     }
+    .test {
+        color: red !important;
+    }
 `;
 
 export default function Sidebar() {
-    const { HamburgerClicked } = useContext(ChartDataContext);
+    const { hamburgerClicked } = useContext(ChartDataContext);
     const { categories } = useContext(ProductDataContext);
-
-    const windowWidth = useWindowSize();
 
     const categoriesList = categories.map((category, index) => {
         return (
             <li>
-                <Link to={`/${category}`} key={index}>
+                <Link to={`/${category}`} activeClassName="test" key={index}>
                     {category}
                 </Link>
            </li>
@@ -82,7 +82,7 @@ export default function Sidebar() {
     })
 
     return (
-        <StyledSidebar HamburgerClicked={HamburgerClicked}>
+        <StyledSidebar hamburgerClicked={hamburgerClicked}>
             <div className="sidebar__header">Categories</div>
             <ul>
             { categoriesList }

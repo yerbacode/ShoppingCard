@@ -5,13 +5,13 @@ const ChartDataContext = createContext();
 const ChartDataProvider = (props) => {
 
     // const [ShoppingCartQuantity, setShoppingCartQuantity] = useState(0);
-    const [ShoppingCartContent, setShoppingCartContent] = useState([]);
-    const [ CartIconHover, setCartIconHover ] = useState(false);
-    const [ CartPopupWindowHover, setCartPopupWindowHover ] = useState(false);
-    const [ HamburgerClicked, setHamburgerClicked ] = useState(false);
+    const [shoppingCartContent, setShoppingCartContent] = useState([]);
+    const [ cartIconHover, setCartIconHover ] = useState(false);
+    const [ cartPopupWindowHover, setCartPopupWindowHover ] = useState(false);
+    const [ hamburgerClicked, setHamburgerClicked ] = useState(false);
 
     return (
-        <ChartDataContext.Provider value={{ HamburgerClicked, setHamburgerClicked, ShoppingCartContent, setShoppingCartContent, CartIconHover, setCartIconHover, CartPopupWindowHover, setCartPopupWindowHover}}>
+        <ChartDataContext.Provider value={{ hamburgerClicked, setHamburgerClicked, shoppingCartContent, setShoppingCartContent, cartIconHover, setCartIconHover, cartPopupWindowHover, setCartPopupWindowHover}}>
             {props.children}
         </ChartDataContext.Provider>
     )

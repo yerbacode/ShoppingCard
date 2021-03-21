@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { ChartDataContext } from '../context/ChartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -109,14 +109,14 @@ const ChartItemContainer = styled.div `
 `;
 export default function CartPopup() {
 
-    const { ShoppingCartContent, setShoppingCartContent, setCartPopupWindowHover } = useContext(ChartDataContext);
+    const { shoppingCartContent, setShoppingCartContent, setCartPopupWindowHover } = useContext(ChartDataContext);
 
 
     const CartContentCheck = () => {
 
-        if(Array.isArray(ShoppingCartContent) && ShoppingCartContent.length){
+        if(Array.isArray(shoppingCartContent) && shoppingCartContent.length){
 
-        let arr2 = ShoppingCartContent.reduce( (a,b) => {
+        let arr2 = shoppingCartContent.reduce( (a,b) => {
             let i = a.findIndex( x => x.title === b.title);
             return i === -1 ? 
             a.push({ title : b.title, price : b.price, image : b.image, times : 1 }) : a[i].times++, a;
@@ -139,10 +139,10 @@ export default function CartPopup() {
         }
 
           const removeItem = (itemtitle) => {
-            var idx = ShoppingCartContent.findIndex(
+            var idx = shoppingCartContent.findIndex(
               (item) => item.title === itemtitle
             );
-            const arr = ShoppingCartContent.filter((item, index, arr) => {
+            const arr = shoppingCartContent.filter((item, index, arr) => {
               return index !== idx;
             });
             setShoppingCartContent(arr);
@@ -150,7 +150,8 @@ export default function CartPopup() {
 
         let CartContentMap = arr2.map((item, id) => (
             <ChartItemContainer key={id}>
-                    <div className="cart__item_image"><img src={item.image} alt="Product"/></div>
+                    {/* Replacing temporary untill API will be fixed. */}
+                    <div className="cart__item_image"><img src={item.image.replace('https://fakestoreapi.com/', 'https://fakestoreapi.herokuapp.com/')} alt="Product"/></div>
                     <div className="cart__item_title">
                         <LinesEllipsis
                             text={item.title}
@@ -176,7 +177,7 @@ export default function CartPopup() {
         }
     }
 
-    const TotalPrice = ShoppingCartContent?.reduce((sum, item) => {
+    const TotalPrice = shoppingCartContent?.reduce((sum, item) => {
         return Math.round((sum + item.price) * 100)/100;
     }, 0);
 

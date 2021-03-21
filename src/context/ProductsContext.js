@@ -7,13 +7,13 @@ const ProductDataProvider = (props) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(categories);
   const [items, setItems] = useState([]);
-  const [ProductLoading, setProductLoading] = useState(true);
+  const [productLoading, setProductLoading] = useState(true);
   const [CategoriesLoading, setCategoriesLoading] = useState(true);
 
   const fetchCategories = async () => {
     setCategoriesLoading(true);
     const { data } = await axios(
-      "https://fakestoreapi.com/products/categories"
+      "https://fakestoreapi.herokuapp.com/products/categories"
     );
     setCategoriesLoading(false);
     return data;
@@ -27,7 +27,7 @@ const ProductDataProvider = (props) => {
   const fetchProducts = async (category) => {
     setProductLoading(true);
     const response = await axios(
-      `https://fakestoreapi.com/products/category/${category}`
+      `https://fakestoreapi.herokuapp.com/products/category/${category}`
     );
     setItems(response.data);
     setProductLoading(false);
@@ -53,7 +53,7 @@ const ProductDataProvider = (props) => {
         items,
         setItems,
         selectedCategory,
-        ProductLoading,
+        productLoading,
         CategoriesLoading,
         setSelectedCategory,
         setPathObjFromComp,

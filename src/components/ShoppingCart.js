@@ -35,17 +35,17 @@ const CartQuantity = styled.div`
 
 export default function ShoppingCart() {
 
-    const { ShoppingCartContent, setShoppingCartContent, setCartIconHover, CartIconHover, CartPopupWindowHover } = useContext(ChartDataContext);
+    const { shoppingCartContent, setShoppingCartContent, setCartIconHover, cartIconHover, cartPopupWindowHover } = useContext(ChartDataContext);
 
     const QuantityRound = () => {
-        if (ShoppingCartContent.length < 100) {
-            return <span>{ShoppingCartContent.length}</span>
+        if (shoppingCartContent.length < 100) {
+            return <span>{shoppingCartContent.length}</span>
         }
         return <span>99+</span>;
     }
 
     const CartPopupShow = () => {
-        if (CartIconHover || CartPopupWindowHover) {
+        if (cartIconHover || cartPopupWindowHover) {
             return (
                 <CartPopup/>
             )
