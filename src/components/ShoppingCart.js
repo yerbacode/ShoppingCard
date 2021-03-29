@@ -1,41 +1,14 @@
 import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import styled from 'styled-components'
 import { ChartDataContext } from '../context/ChartContext';
 import CartPopup from './CartPopup';
+import { ShoppingCartContainer, CartQuantity } from './ShoppingCartStyles';
 
 
-const ShoppingCartContainer = styled.div`
-    position: relative;
-    margin-right: 7px;
-    cursor: pointer;
-    height: 22px;
-`;
+const ShoppingCart = () => {
 
-const CartQuantity = styled.div`
-    background: #d1d1d1;
-    border-radius: 50px;
-    height: 17px;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: -9px;
-    bottom: -4px;
-    padding-left: 5px;
-    padding-right: 5px;
-    span {
-        font-size: 13px;
-        margin-bottom: 2px;
-    }    
-`;
-
-
-
-export default function ShoppingCart() {
-
-    const { shoppingCartContent, setShoppingCartContent, setCartIconHover, cartIconHover, cartPopupWindowHover } = useContext(ChartDataContext);
+    const { shoppingCartContent, setCartIconHover, cartIconHover, cartPopupWindowHover } = useContext(ChartDataContext);
 
     const QuantityRound = () => {
         if (shoppingCartContent.length < 100) {
@@ -60,3 +33,5 @@ export default function ShoppingCart() {
         </ShoppingCartContainer>
     )
 }
+
+export default ShoppingCart;
