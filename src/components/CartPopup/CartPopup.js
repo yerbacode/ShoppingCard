@@ -1,12 +1,11 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
-import { ChartDataContext } from '../context/ChartContext';
+import { ChartDataContext } from '../../context/ChartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import LinesEllipsis from "react-lines-ellipsis";
 import { CartPopupWindow, ChartItemContainer } from './CartPopupStyles';
 
-export default function CartPopup() {
+const CartPopup = () => {
 
     const { shoppingCartContent, setShoppingCartContent, setCartPopupWindowHover } = useContext(ChartDataContext);
 
@@ -101,3 +100,5 @@ export default function CartPopup() {
             </CartPopupWindow>
     );
 }
+
+export default CartPopup;

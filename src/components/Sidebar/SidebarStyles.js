@@ -2,9 +2,10 @@ import styled, { css } from "styled-components";
 
 export const StyledSidebar = styled.div`
     width: 25%;
+    background: white;
+    z-index: 9;
     @media (max-width: 810px) {
         position: absolute;
-        background: white;
         height: 100%;
         width: 30%;
         left: -30%;

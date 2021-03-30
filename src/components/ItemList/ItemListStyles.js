@@ -18,7 +18,7 @@ width: 75%;
   width: 100%;
 }
 padding-top: 40px;
-positon: relative;
+position: relative;
 ul {
   list-style-type: none;
   li {

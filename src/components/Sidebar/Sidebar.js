@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { ProductDataContext } from '../context/ProductsContext';
+import { ProductDataContext } from '../../context/ProductsContext';
 import { Link } from "react-router-dom";
-import { ChartDataContext } from '../context/ChartContext';
+import { ChartDataContext } from '../../context/ChartContext';
 import { StyledSidebar } from './SidebarStyles';
 
 const Sidebar = () => {
@@ -10,8 +10,8 @@ const Sidebar = () => {
 
     const categoriesList = categories.map((category, index) => {
         return (
-            <li>
-                <Link to={`/${category}`} key={index} onClick={() => {setHamburgerClicked(false)}}>
+            <li key={'category' + index}>
+                <Link to={`/${category}`}onClick={() => {setHamburgerClicked(false)}}>
                     {category}
                 </Link>
            </li>

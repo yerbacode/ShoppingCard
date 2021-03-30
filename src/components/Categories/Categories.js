@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router';
-import { ProductDataContext } from '../context/ProductsContext';
-import Loader from './Loader';
-import Sidebar from './Sidebar';
-import ItemList from './ItemList';
-import { ContainerFlex } from '../GlobalStyles';
+import { ProductDataContext } from '../../context/ProductsContext';
+import Loader from '../Loader/Loader';
+import Sidebar from '../Sidebar/Sidebar';
+import ItemList from '../ItemList/ItemList';
+import { ContainerFlex } from '../../GlobalStyles';
 
 
 const Categories = () => {

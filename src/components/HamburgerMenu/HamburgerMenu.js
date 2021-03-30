@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ChartDataContext } from '../context/ChartContext';
+import { ChartDataContext } from '../../context/ChartContext';
 import { Burger } from './HamburgerMenuStyles';
 
 const HamburgerMenu= () => {

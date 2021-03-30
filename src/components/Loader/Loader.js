@@ -33,15 +33,15 @@ const LoaderComponent = styled.div `
    100% {
      transform: translate(0, 0);
    }
-}
+  }
 `
 
 const Loader = () => {
     return (
           <LoaderComponent>
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
         </LoaderComponent>
     )
 }

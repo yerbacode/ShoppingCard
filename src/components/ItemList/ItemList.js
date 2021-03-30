@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import LinesEllipsis from "react-lines-ellipsis";
-import { ProductDataContext } from "../context/ProductsContext";
-import { ChartDataContext } from "../context/ChartContext";
+import { ProductDataContext } from "../../context/ProductsContext";
+import { ChartDataContext } from "../../context/ChartContext";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons'
-import Loader from "./Loader";
+import Loader from "../Loader/Loader";
 import { FlexContainer, ItemContainer, SingleItemContainer, StyledItemList } from "./ItemListStyles";
 
 
-export default function ItemList() {
+const ItemList = () => {
   const { items, setSelectedCategory, setPathObjFromComp, productLoading } = useContext(
     ProductDataContext
   );
@@ -69,3 +69,5 @@ export default function ItemList() {
     ProductsAreLoaded()
   );
 }
+
+export default ItemList;

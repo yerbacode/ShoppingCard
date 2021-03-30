@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { ChartDataContext } from '../context/ChartContext';
-import CartPopup from './CartPopup';
+import { ChartDataContext } from '../../context/ChartContext';
+import CartPopup from '../CartPopup/CartPopup';
 import { ShoppingCartContainer, CartQuantity } from './ShoppingCartStyles';
 
 

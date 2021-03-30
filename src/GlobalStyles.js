@@ -48,6 +48,7 @@ export const ContainerFlex = styled.div`
   }
   @media (max-width: 810px) {
       width: 100%;
+      align-items: center;
     }
   @media (min-width: 992px) {
     width: 970px;
