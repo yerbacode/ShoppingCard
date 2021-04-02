@@ -18,8 +18,8 @@ const ProductDataProvider = (props) => {
       );
       setCategoriesLoading(false);
       return data;
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
   const [pathObj, setpathObj] = useState("");
@@ -45,7 +45,6 @@ const ProductDataProvider = (props) => {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     fetchProducts(selectedCategory);
   }, [selectedCategory]);
@@ -61,7 +60,7 @@ const ProductDataProvider = (props) => {
         CategoriesLoading,
         setSelectedCategory,
         setPathObjFromComp,
-        pathObj
+        pathObj,
       }}
     >
       {props.children}

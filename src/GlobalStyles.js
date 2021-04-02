@@ -47,9 +47,9 @@ export const ContainerFlex = styled.div`
     width: 750px;
   }
   @media (max-width: 810px) {
-      width: 100%;
-      align-items: center;
-    }
+    width: 100%;
+    align-items: center;
+  }
   @media (min-width: 992px) {
     width: 970px;
   }
