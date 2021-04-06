@@ -63,19 +63,11 @@ const ItemList = () => {
   ));
 
   const ProductsAreLoaded = () => {
-    if (productLoading === true) {
-      return (
-        <StyledItemList>
-          <Loader />
-        </StyledItemList>
-      );
-    } else {
-      return (
-        <StyledItemList>
-          <ItemContainer>{itemMap}</ItemContainer>
-        </StyledItemList>
-      );
-    }
+    return (
+      <StyledItemList>
+        {productLoading ? <Loader /> : <ItemContainer>{itemMap}</ItemContainer>}
+      </StyledItemList>
+    );
   };
 
   return ProductsAreLoaded();

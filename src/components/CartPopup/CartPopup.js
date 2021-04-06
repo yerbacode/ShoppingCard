@@ -20,7 +20,6 @@ const CartPopup = () => {
   const {
     shoppingCartContent,
     setShoppingCartContent,
-    setCartPopupWindowHover,
   } = useContext(CartDataContext);
 
   const cartContentCheck = () => {
@@ -103,12 +102,7 @@ const CartPopup = () => {
   }, 0);
 
   return (
-    <CartPopupWindow
-      onMouseEnter={() => setCartPopupWindowHover(true)}
-      onTouchStart={() => setCartPopupWindowHover(true)}
-      onTouchEnd={() => setCartPopupWindowHover(false)}
-      onMouseLeave={() => setCartPopupWindowHover(false)}
-    >
+    <CartPopupWindow>
       <CartPopupWindowHeader>
         <div>Your cart</div>
         <div></div>

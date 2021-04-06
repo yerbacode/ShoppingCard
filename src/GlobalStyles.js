@@ -63,6 +63,11 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   color: #1f1f1f;
+  @media (max-width: 810px) {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
 `;
 export const CardContainer = styled.div`
   width: 100%;

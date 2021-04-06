@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { CartDataContext } from "../../context/CartContext";
@@ -6,12 +6,9 @@ import CartPopup from "../CartPopup/CartPopup";
 import { ShoppingCartContainer, CartQuantity } from "./ShoppingCartStyles";
 
 const ShoppingCart = () => {
-  const {
-    shoppingCartContent,
-    setCartIconHover,
-    cartIconHover,
-    cartPopupWindowHover,
-  } = useContext(CartDataContext);
+  const { shoppingCartContent } = useContext(CartDataContext);
+
+  const [cartIconHover, setCartIconHover] = useState(false);
 
   const QuantityRound = () => {
     if (shoppingCartContent.length < 100) {
@@ -21,7 +18,7 @@ const ShoppingCart = () => {
   };
 
   const CartPopupShow = () => {
-    if (cartIconHover || cartPopupWindowHover) {
+    if (cartIconHover) {
       return <CartPopup />;
     }
   };

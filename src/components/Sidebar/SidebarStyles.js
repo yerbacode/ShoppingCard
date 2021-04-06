@@ -5,7 +5,7 @@ export const StyledSidebar = styled.div`
   background: white;
   z-index: 9;
   @media (max-width: 810px) {
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 30%;
     left: -30%;

@@ -5,8 +5,6 @@ const CartDataContext = createContext();
 const CartDataProvider = (props) => {
   // const [ShoppingCartQuantity, setShoppingCartQuantity] = useState(0);
   const [shoppingCartContent, setShoppingCartContent] = useState([]);
-  const [cartIconHover, setCartIconHover] = useState(false);
-  const [cartPopupWindowHover, setCartPopupWindowHover] = useState(false);
   const [hamburgerClicked, setHamburgerClicked] = useState(false);
 
   return (
@@ -16,10 +14,6 @@ const CartDataProvider = (props) => {
         setHamburgerClicked,
         shoppingCartContent,
         setShoppingCartContent,
-        cartIconHover,
-        setCartIconHover,
-        cartPopupWindowHover,
-        setCartPopupWindowHover,
       }}
     >
       {props.children}

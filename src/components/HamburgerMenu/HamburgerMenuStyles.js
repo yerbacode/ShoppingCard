@@ -14,28 +14,7 @@ export const Burger = styled.div`
     margin: 8px auto;
     transition: all 0.3s ease-in-out;
   }
-  .is-active {
-    transition: all 0.3s ease-in-out;
-    transition-delay: 0.6s;
-    transform: rotate(45deg);
-  }
 
-  .is-active span:nth-child(2) {
-    width: 0px;
-  }
-
-  .is-active span:nth-child(1),
-  .is-active span:nth-child(3) {
-    transition-delay: 0.3s;
-  }
-
-  .is-active span:nth-child(1) {
-    transform: translateY(13px);
-  }
-
-  .is-active span:nth-child(3) {
-    transform: translateY(-13px) rotate(90deg);
-  }
   ${({ hamburgerClicked }) =>
     hamburgerClicked &&
     css`
