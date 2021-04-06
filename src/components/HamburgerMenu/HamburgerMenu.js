@@ -12,9 +12,9 @@ const HamburgerMenu = () => {
         setHamburgerClicked(!hamburgerClicked);
       }}
     >
-      <span className="line"></span>
-      <span className="line"></span>
-      <span className="line"></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </Burger>
   );
 };

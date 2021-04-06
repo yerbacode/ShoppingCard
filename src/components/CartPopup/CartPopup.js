@@ -3,7 +3,18 @@ import { CartDataContext } from "../../context/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import LinesEllipsis from "react-lines-ellipsis";
-import { CartPopupWindow, CartItemContainer } from "./CartPopupStyles";
+import {
+  CartPopupWindow,
+  CartItemContainer,
+  CartPopupWindowHeader,
+  CartPopupWindowPriceSummary,
+  CartPopupWindowContent,
+  CartItemImage,
+  CartItemTitle,
+  CartItemAmount,
+  CartItemRemove,
+  CartItemPrice,
+} from "./CartPopupStyles";
 
 const CartPopup = () => {
   const {
@@ -12,10 +23,10 @@ const CartPopup = () => {
     setCartPopupWindowHover,
   } = useContext(CartDataContext);
 
-  const CartContentCheck = () => {
-    if (Array.isArray(shoppingCartContent) && shoppingCartContent.length) {
-      let arr2 = shoppingCartContent.reduce((a, b) => {
-        let i = a.findIndex((x) => x.title === b.title);
+  const cartContentCheck = () => {
+    if (shoppingCartContent.length) {
+      const cartContentReducer = shoppingCartContent.reduce((a, b) => {
+        const i = a.findIndex((x) => x.title === b.title);
         return (
           i === -1
             ? a.push({
@@ -55,12 +66,12 @@ const CartPopup = () => {
         setShoppingCartContent(arr);
       };
 
-      let CartContentMap = arr2.map((item, id) => (
+      let CartContentMap = cartContentReducer.map((item, id) => (
         <CartItemContainer key={id}>
-          <div className="cart__item_image">
+          <CartItemImage>
             <img src={item.image} alt="Product" />
-          </div>
-          <div className="cart__item_title">
+          </CartItemImage>
+          <CartItemTitle>
             <LinesEllipsis
               text={item.title}
               maxLine="3"
@@ -68,19 +79,16 @@ const CartPopup = () => {
               trimRight
               basedOn="letters"
             />
-          </div>
-          <div className="cart__item_amount">{amountRound(item.times)}</div>
-          <div
-            className="cart__item_remove"
-            onClick={() => removeItem(item.title)}
-          >
+          </CartItemTitle>
+          <CartItemAmount>{amountRound(item.times)}</CartItemAmount>
+          <CartItemRemove onClick={() => removeItem(item.title)}>
             <button>
               <FontAwesomeIcon icon={faTrashAlt} size="lg" />
             </button>
-          </div>
-          <div className="cart__item_price">
+          </CartItemRemove>
+          <CartItemPrice>
             <span>{priceRound(item.price, item.times)} zł</span>
-          </div>
+          </CartItemPrice>
         </CartItemContainer>
       ));
 
@@ -101,21 +109,21 @@ const CartPopup = () => {
       onTouchEnd={() => setCartPopupWindowHover(false)}
       onMouseLeave={() => setCartPopupWindowHover(false)}
     >
-      <div className="CartPopupWindow__Header">
+      <CartPopupWindowHeader>
         <div>Your cart</div>
         <div></div>
-        <div className="CartPopupWindow__Header_Amount">Amount:</div>
+        <div>Amount:</div>
         <div>Remove:</div>
         <div>
           Cart <span>value:</span>
         </div>
-      </div>
-      <div className="CartPopupWindow__Content">{CartContentCheck()}</div>
-      <div className="CartPopupWindow__PriceSummary">
+      </CartPopupWindowHeader>
+      <CartPopupWindowContent>{cartContentCheck()}</CartPopupWindowContent>
+      <CartPopupWindowPriceSummary>
         <span>
           Total cost: <span> {TotalPrice} zł</span>
         </span>
-      </div>
+      </CartPopupWindowPriceSummary>
     </CartPopupWindow>
   );
 };

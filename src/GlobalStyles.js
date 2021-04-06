@@ -37,11 +37,9 @@ export const ContainerFlex = styled.div`
   margin-left: auto;
   justify-content: space-between;
   display: flex;
-  span {
-    a {
-      text-decoration: none;
-      color: #1f1f1f;
-    }
+  a {
+    text-decoration: none;
+    color: #1f1f1f;
   }
   @media (min-width: 768px) {
     width: 750px;

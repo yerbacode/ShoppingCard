@@ -19,9 +19,7 @@ function App() {
           <Header>
             <ContainerFlex>
               <HamburgerMenu />
-              <span>
                 <Link to="/">ShopLogo</Link>
-              </span>
               <ShoppingCart />
             </ContainerFlex>
           </Header>

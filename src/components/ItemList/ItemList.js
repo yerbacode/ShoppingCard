@@ -9,7 +9,11 @@ import Loader from "../Loader/Loader";
 import {
   FlexContainer,
   ItemContainer,
+  SingleItem,
+  SingleItemButton,
   SingleItemContainer,
+  SingleItemPrice,
+  SingleItemTitle,
   StyledItemList,
 } from "./ItemListStyles";
 
@@ -36,9 +40,9 @@ const ItemList = () => {
 
   let itemMap = items.map((item) => (
     <SingleItemContainer key={item.id}>
-      <div className="single__item">
+      <SingleItem>
         <img src={item.image} alt={item.title} />
-        <div className="single__item_title">
+        <SingleItemTitle>
           <LinesEllipsis
             text={item.title}
             maxLine="3"
@@ -46,15 +50,15 @@ const ItemList = () => {
             trimRight
             basedOn="letters"
           />
-        </div>
+        </SingleItemTitle>
         <FlexContainer>
-          <div className="single__item_price">{item.price} zł</div>
-          <button onClick={() => AddToCart(item)}>
+          <SingleItemPrice>{item.price} zł</SingleItemPrice>
+          <SingleItemButton onClick={() => AddToCart(item)}>
             <FontAwesomeIcon icon={faShoppingBasket} />
             Add to cart
-          </button>
+          </SingleItemButton>
         </FlexContainer>
-      </div>
+      </SingleItem>
     </SingleItemContainer>
   ));
 

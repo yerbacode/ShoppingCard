@@ -6,20 +6,20 @@ const LoaderComponent = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  .line {
+  div {
     display: inline-block;
     width: 15px;
     height: 15px;
     border-radius: 15px;
     background-color: #c6c6c6;
   }
-  .line:nth-last-child(1) {
+  div:nth-last-child(1) {
     animation: loadingC 0.6s 0.1s linear infinite;
   }
-  .line:nth-last-child(2) {
+  div:nth-last-child(2) {
     animation: loadingC 0.6s 0.2s linear infinite;
   }
-  .line:nth-last-child(3) {
+  div:nth-last-child(3) {
     animation: loadingC 0.6s 0.3s linear infinite;
   }
   @keyframes loadingC {
@@ -38,9 +38,9 @@ const LoaderComponent = styled.div`
 const Loader = () => {
   return (
     <LoaderComponent>
-      <div className="line"></div>
-      <div className="line"></div>
-      <div className="line"></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </LoaderComponent>
   );
 };
