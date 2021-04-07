@@ -1,6 +1,6 @@
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import { CartDataProvider } from "./context/CartContext";
-import { BrowserRouter, HashRouter, Link } from "react-router-dom";
+import { HashRouter, Link } from "react-router-dom";
 import HamburgerMenu from "./components/HamburgerMenu/HamburgerMenu";
 import CategoriesAreLoading from "./components/Categories/Categories";
 import {
@@ -12,7 +12,7 @@ import {
 
 function App() {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL + '/'}>
+    <HashRouter>
       <GlobalStyle />
       <div className="App">
         <CartDataProvider>
