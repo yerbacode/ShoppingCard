@@ -63,7 +63,7 @@ export const SingleItemTitle = styled.div`
   }
 `;
 
-export const SingleItemButton = styled.div`
+export const SingleItemButton = styled.button`
     display: block;
     border: none;
     background: none;
