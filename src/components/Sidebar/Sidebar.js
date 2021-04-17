@@ -10,16 +10,17 @@ import {
 
 const Sidebar = () => {
   const { setHamburgerClicked, hamburgerClicked } = useContext(CartDataContext);
-  const { categories } = useContext(ProductDataContext);
+  const { categories, selectedCategory } = useContext(ProductDataContext);
 
   const categoriesList = categories.map((category, index) => {
     return (
       <li key={"category" + index}>
         <Link
-          to={`/${category}`}
+          to={`/categories?name=${category}`}
           onClick={() => {
             setHamburgerClicked(false);
           }}
+          className={selectedCategory === category ? 'active' : ''}
         >
           {category}
         </Link>

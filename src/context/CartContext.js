@@ -3,7 +3,6 @@ import React, { createContext, useState } from "react";
 const CartDataContext = createContext();
 
 const CartDataProvider = (props) => {
-  // const [ShoppingCartQuantity, setShoppingCartQuantity] = useState(0);
   const [shoppingCartContent, setShoppingCartContent] = useState([]);
   const [hamburgerClicked, setHamburgerClicked] = useState(false);
 

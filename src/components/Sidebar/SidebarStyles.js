@@ -60,4 +60,8 @@ export const SidebarCategoriesList = styled.ul`
       transition: 0.3s;
     }
   }
+  .active {
+    font-weight: 700;
+    color: black;
+  }
 `;

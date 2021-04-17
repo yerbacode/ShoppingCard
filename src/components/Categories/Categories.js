@@ -16,7 +16,7 @@ const Categories = () => {
       <ContainerFlex>
         <Sidebar />
         <Switch>
-          <Redirect exact from="/" to="/electronics" />
+          <Redirect exact from="/" to="/categories?name=electronics" />
           <Route path="/:category" component={ItemList} />
         </Switch>
       </ContainerFlex>

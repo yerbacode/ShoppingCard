@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import LinesEllipsis from "react-lines-ellipsis";
 import { ProductDataContext } from "../../context/ProductsContext";
 import { CartDataContext } from "../../context/CartContext";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../Loader/Loader";
@@ -29,10 +29,14 @@ const ItemList = () => {
   );
   const params = useParams();
 
+  const queryURL = new URLSearchParams(useLocation().search)
+
+  const categoryName = queryURL.get('name')
+
   useEffect(() => {
-    setSelectedCategory(params.category);
-    setPathObjFromComp(params.category);
-  }, [params.category]);
+    setSelectedCategory(categoryName);
+    setPathObjFromComp(categoryName);
+  }, [categoryName]);
 
   const AddToCart = (item) => {
     setShoppingCartContent([item, ...shoppingCartContent]);
